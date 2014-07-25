@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BE86EE92-282E-4DB5-BDB1-934913D71070}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HelloSFML</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\sfml\include;C:\box2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\sfml\lib;C:\box2d\Build\vs2010\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Android.cpp" />
+    <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BombParticle.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EntityType.cpp" />
+    <ClCompile Include="Friend.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Health.cpp" />
+    <ClCompile Include="JointPlatform.cpp" />
+    <ClCompile Include="Kirby.cpp" />
+    <ClCompile Include="Level1.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Man.cpp" />
+    <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Ranger.cpp" />
+    <ClCompile Include="reference.cpp" />
+    <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SFMLDebugDraw.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="SpikeBall.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StaticPlatform.cpp" />
+    <ClCompile Include="SwingSpikeBall.cpp" />
+    <ClCompile Include="TimedSpikes.cpp" />
+    <ClCompile Include="Wheel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Android.h" />
+    <ClInclude Include="AnimatedSprite.hpp" />
+    <ClInclude Include="Animation.hpp" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BombParticle.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="CollisionListener.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Friend.h" />
+    <ClInclude Include="GameCharacter.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Health.h" />
+    <ClInclude Include="JointPlatform.h" />
+    <ClInclude Include="Kirby.h" />
+    <ClInclude Include="Level1.h" />
+    <ClInclude Include="Man.h" />
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="OrderedPair.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Ranger.h" />
+    <ClInclude Include="Robot.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="SFMLDebugDraw.h" />
+    <ClInclude Include="Skeleton.h" />
+    <ClInclude Include="SpikeBall.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StaticPlatform.h" />
+    <ClInclude Include="SwingSpikeBall.h" />
+    <ClInclude Include="TimedSpikes.h" />
+    <ClInclude Include="Wheel.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
