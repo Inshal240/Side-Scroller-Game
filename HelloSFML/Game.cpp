@@ -15,10 +15,10 @@ Game::Game(RenderWindow& window, SFMLDebugDraw& debugDraw)
 
 bool Game::Run()
 {
-	//
-	//SplashScreen();
+	
+	SplashScreen();
 
-	//LoadScreen();
+	LoadScreen();
 	
 
 	Initialize();

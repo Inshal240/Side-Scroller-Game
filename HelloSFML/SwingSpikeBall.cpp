@@ -19,7 +19,8 @@ void SwingSpikeBall::SetWorld(b2World& world)
 	_pJointBody = world.CreateBody(&_jointBodyDef);
 	_pJointBody->CreateFixture( &_jointFixtureDef);
 
-
+	spikeBall.GetPhysicsBody()->SetAngularDamping(0);
+	spikeBall.GetPhysicsBody()->SetLinearDamping(0);
 	_chainJointDef.bodyA = _pBody;
 	_chainJointDef.bodyB = _pJointBody; 
 	_chainJointDef.localAnchorA =  b2Vec2(_pBody->GetLocalCenter().x, _pBody->GetLocalCenter().y - 2); //_pBody->GetLocalCenter() ;
@@ -34,7 +35,11 @@ void SwingSpikeBall::SetWorld(b2World& world)
 
 	_pBallJoint = (b2RevoluteJoint *)world.CreateJoint(&_ballJointDef);
 
-	_pBody->ApplyLinearImpulse( b2Vec2(60,30), _pBody->GetLocalCenter() );
+	_pBody->ApplyLinearImpulse( b2Vec2(100,0), _pBody->GetLocalCenter() );
+
+	_pBody->SetAngularDamping(0.0);
+	_pBody->SetLinearDamping(0.0);
+
 }
 
 
@@ -69,7 +74,7 @@ SwingSpikeBall::SwingSpikeBall(sf::Texture& texture, sf::Texture& ballTexture, f
 	
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 10.f;
-	_fixtureDef.friction = 0.8f;
+	_fixtureDef.friction = 0.0f;
 	_fixtureDef.restitution = 0.5f;
 
 	//setup joint body
@@ -114,13 +119,7 @@ void SwingSpikeBall::Update(sf::Event e, sf::Time dt)
 
 	//cout << _pBody->GetPosition().x << "," << _pBody->GetPosition().y << endl;
 
-		if ( e.type == e.KeyPressed)
-	{
-		if ( e.key.code == Keyboard::F )
-			_pBody->ApplyLinearImpulse(b2Vec2(200,0), b2Vec2( _pBody->GetLocalCenter().x,_pBody->GetLocalCenter().y + 2));
-		
-	}
-
+	
 	spikeBall.Update(e, dt);
 }
 

@@ -99,6 +99,10 @@ void Level1::LoadContent()
 	SideWalls.loadFromFile("Art\\Wall.png");
 	textureBank.insert(pair<string,Texture>("wall",SideWalls));
 
+	Texture Door;
+	Door.loadFromFile("Art\\door.png");
+	textureBank.insert(pair<string, Texture>("door", Door));
+
 
 	/******************************************************
 	* End loading textures , start initializing game objects
@@ -132,36 +136,45 @@ void Level1::LoadContent()
 
 	SpreadTrees(); //Oh yes! we LOVE nature.
 
+
+
+
 	//Boundary walls
 
 	StaticPlatform Wall1(textureBank["wall"],0,350,100.0f,0);
 	Wall1.SetWorld(*_pWorld);
 	platforms.push_back(Wall1);
 
-	StaticPlatform Wall2(textureBank["wall"],2300,350,100.0f,0);
+	StaticPlatform Wall2(textureBank["wall"],3970,350,100.0f,0);
 	Wall2.SetWorld(*_pWorld);
 	platforms.push_back(Wall2);
 
 	//end wall
 
 
+	StaticPlatform Doors(textureBank["door"], 3960, 768 - 48 - 48 - 48 - 48);
+
+	Doors.IamA(TREE)->ICollideWith(UNKNOWN);
+	Doors.SetWorld(*_pWorld);
+	platforms.push_back(Doors);
+
 	
 	StaticPlatform grassCover1( textureBank["grassGround"], 125, 768-48-48, 450.0f, 0);
 	grassCover1.SetWorld( *_pWorld );
 	platforms.push_back( grassCover1 );
 
-	StaticPlatform grassCover2(textureBank["grassGround"], 600, 768 - 48 - 48, 350.0f, 0);
+	StaticPlatform grassCover2(textureBank["grassGround"], 425+2000, 768 - 48 - 48, 4000.0f, 0);
 	grassCover2.SetWorld( *_pWorld );
 	platforms.push_back( grassCover2 );
 
-	StaticPlatform grassCover3(textureBank["grassGround"], 1100, 768 - 48 - 48);
+	/*StaticPlatform grassCover3(textureBank["grassGround"], 1100, 768 - 48 - 48);
 	grassCover3.SetWorld( *_pWorld );
 	platforms.push_back( grassCover3 );
 
 	StaticPlatform grassCover4(textureBank["grassGround"], 1900, 768 - 48 - 48);
 	grassCover4.SetWorld( *_pWorld );
 	platforms.push_back( grassCover4 );
-
+*/
 
 
 	//load ground
@@ -170,18 +183,18 @@ void Level1::LoadContent()
 	ground1.SetWorld( *_pWorld );
 	platforms.push_back( ground1 );
 
-	StaticPlatform ground3(textureBank["brownGround"], 600, 768 - 48, 350.0f, 0);
+	StaticPlatform ground3(textureBank["brownGround"], 2425, 768 - 48, 4000.0f, 0);
 	ground3.SetWorld( *_pWorld );
 	platforms.push_back( ground3 );
 
-	//continued ground
-	StaticPlatform ground2(textureBank["brownGround"], 1100, 768 - 48);
-	ground2.SetWorld( *_pWorld );
-	platforms.push_back( ground2 );
+	////continued ground
+	//StaticPlatform ground2(textureBank["brownGround"], 1100, 768 - 48);
+	//ground2.SetWorld( *_pWorld );
+	//platforms.push_back( ground2 );
 
-	StaticPlatform ground4(textureBank["brownGround"], 1900, 768 - 48);
-	ground4.SetWorld( *_pWorld );
-	platforms.push_back( ground4);
+	//StaticPlatform ground4(textureBank["brownGround"], 1900, 768 - 48);
+	//ground4.SetWorld( *_pWorld );
+	//platforms.push_back( ground4);
 
 
 
@@ -202,13 +215,13 @@ void Level1::LoadContent()
 
 
 	//Load first timed spike pair 
-	TimedSpikes timed( textureBank["twospikesup"], 1650, 768 , (int)2);
+	TimedSpikes timed( textureBank["twospikesup"], 1650, 768 , (int)1);
 	timed.IamA( SPIKE )->ICollideWith( EDWARD );
 	timed.SetWorld(*_pWorld);
 	timed.SetDirection(0); //up
 	timedSpikes.push_back( timed );
 
-	TimedSpikes timeddown( textureBank["twospikesdown"], 1650, 400 , (int)2);
+	TimedSpikes timeddown( textureBank["twospikesdown"], 1650, 400 , (int)1);
 	
 	timeddown.IamA( SPIKE )->ICollideWith( EDWARD );
 	timeddown.SetWorld(*_pWorld);
@@ -219,13 +232,13 @@ void Level1::LoadContent()
 
 	//Load second timed spike pair
 
-	TimedSpikes timed2( textureBank["twospikesup"], 1950, 768 , (int)2);
+	TimedSpikes timed2( textureBank["twospikesup"], 1950, 768 , (int)1);
 	timed2.IamA( SPIKE )->ICollideWith( EDWARD );
 	timed2.SetWorld(*_pWorld);
 	timed2.SetDirection(0); //up
 	timedSpikes.push_back( timed2 );
 
-	TimedSpikes timeddown2( textureBank["twospikesdown"], 1950, 400 , (int)2);
+	TimedSpikes timeddown2( textureBank["twospikesdown"], 1950, 400 , (int)1);
 	
 	timeddown2.IamA( SPIKE )->ICollideWith( EDWARD );
 	timeddown2.SetWorld(*_pWorld);
@@ -250,20 +263,20 @@ void Level1::LoadContent()
 	//end gray ladder
 
 
-	StaticPlatform spike1( textureBank["woodSpikes"], 1000, 768-48-48-40);
-	spike1.IamA(SPIKE)->ICollideWith(EDWARD|ROBOT);
-	spike1.SetWorld( *_pWorld );
-	platforms.push_back( spike1 );
+	//StaticPlatform spike1( textureBank["woodSpikes"], 1000, 768-48-48-40);
+	//spike1.IamA(SPIKE)->ICollideWith(EDWARD|ROBOT);
+	//spike1.SetWorld( *_pWorld );
+	//platforms.push_back( spike1 );
 
 	StaticPlatform spike2( textureBank["twospikesup"], 390, 768-25);//Under ground spikes
 	spike2.IamA(SPIKE)->ICollideWith(EDWARD);
 	spike2.SetWorld( *_pWorld );
 	platforms.push_back( spike2 );
 
-	StaticPlatform spike3( textureBank["woodSpikes"], 630, 768-48-48-40);
+	/*StaticPlatform spike3( textureBank["woodSpikes"], 630, 768-48-48-40);
 	spike3.IamA(SPIKE)->ICollideWith(EDWARD);
 	spike3.SetWorld( *_pWorld );
-	platforms.push_back( spike3 );
+	platforms.push_back( spike3 );*/
 
 	JointPlatform b1( textureBank["blade2"], 500, 220, true );
 	b1.IamA(BLADE)->ICollideWith(EDWARD);
@@ -294,15 +307,15 @@ void Level1::LoadContent()
 
 	//start second gray ladder
 	//origin of next level = origin of lower level + 24 (only x coord)
-	StaticPlatform ladder1( textureBank["grayStone"], 1075 + 250, 768-48-48-48, (int)5);
+	StaticPlatform ladder1( textureBank["grayStone"], 1075 + 250, 768-48-48-32, (int)5);
 	ladder1.SetWorld( *_pWorld );
 	platforms.push_back( ladder1 );
 
-	StaticPlatform ladder2( textureBank["grayStone"], 1075 + 250, 768-48-48-48-48, (int)3);
+	StaticPlatform ladder2( textureBank["grayStone"], 1075 + 250, 768-48-48-32-32, (int)3);
 	ladder2.SetWorld( *_pWorld );
 	platforms.push_back( ladder2 );
 
-	StaticPlatform ladder3( textureBank["grayStone"], 1075 + 250, 768-48-48-48-48-48, (int)1);
+	StaticPlatform ladder3( textureBank["grayStone"], 1075 + 250, 768-48-48-32-32-32, (int)1);
 	ladder3.SetWorld( *_pWorld );
 	platforms.push_back( ladder3 );
 
@@ -311,16 +324,19 @@ void Level1::LoadContent()
 
 
 	//start Final gray ladder
-	
-	StaticPlatform ladder4( textureBank["grayStone"], 2300-24-24-24-24-24, 768-48-48-48, (int)3);
+	StaticPlatform ladder7(textureBank["grayStone"], 2300 - 24 - 24 - 24, 768 - 48 - 48 - 32, (int)7);
+	ladder7.SetWorld(*_pWorld);
+	platforms.push_back(ladder7);
+
+	StaticPlatform ladder4( textureBank["grayStone"], 2300-24-24-24, 768-48-48-32-32, (int)5);
 	ladder4.SetWorld( *_pWorld );
 	platforms.push_back( ladder4 );
 
-	StaticPlatform ladder5( textureBank["grayStone"], 2300 -24-24-24-24, 768-48-48-48-48, (int)2);
+	StaticPlatform ladder5( textureBank["grayStone"], 2300 -24-24-24, 768-48-48-32-32-32, (int)3);
 	ladder5.SetWorld( *_pWorld );
 	platforms.push_back( ladder5 );
 
-	StaticPlatform ladder6( textureBank["grayStone"], 2300 -24-24-24 , 768-48-48-48-48-48, (int)1);
+	StaticPlatform ladder6( textureBank["grayStone"], 2300 -24-24-24 , 768-48-48-32-32-32-32, (int)1);
 	ladder6.SetWorld( *_pWorld );
 	platforms.push_back( ladder6 );
 
@@ -328,21 +344,6 @@ void Level1::LoadContent()
 
 
 
-	//start gray wall
-
-	StaticPlatform wall1( textureBank["grayStone"], 800, 24, (int)4);
-	wall1.SetWorld( *_pWorld );
-	platforms.push_back( wall1 );
-
-	StaticPlatform wall2( textureBank["grayStone"], 800, 48+24, (int)4);
-	wall2.SetWorld( *_pWorld );
-	platforms.push_back( wall2 );
-
-	StaticPlatform wall3( textureBank["grayStone"], 800, 96+24, (int)4);
-	wall3.SetWorld( *_pWorld );
-	platforms.push_back( wall3 );
-
-	//end gray wall
 
 	//start grassy ground
 
@@ -434,22 +435,22 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 	{
 		levelView.setCenter(sf::Vector2f(MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x),levelView.getCenter().y));
 
-		if( MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x) > (2300-_rWindow.getSize().x/2))
-		levelView.setCenter(sf::Vector2f(2300-_rWindow.getSize().x/2.f,_rWindow.getSize().y/2.f));
+		if( MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x) > (4000-_rWindow.getSize().x/2))
+		levelView.setCenter(sf::Vector2f(4000-_rWindow.getSize().x/2.f,_rWindow.getSize().y/2.f));
 	}
 	else
 		levelView.setCenter(sf::Vector2f(_rWindow.getSize().x/2.f,_rWindow.getSize().y/2.f));
 
 
 
-	//if (Keyboard::isKeyPressed(Keyboard::Period))
-	//{
-	//	levelView.setCenter(sf::Vector2f((levelView.getCenter().x + 20), levelView.getCenter().y));
-	//}
-	//if (Keyboard::isKeyPressed(Keyboard::Comma))
-	//{
-	//	levelView.setCenter(sf::Vector2f((levelView.getCenter().x - 20), levelView.getCenter().y));
-	//}
+	if (Keyboard::isKeyPressed(Keyboard::Period))
+	{
+		levelView.setCenter(sf::Vector2f((levelView.getCenter().x + 20), levelView.getCenter().y));
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Comma))
+	{
+		levelView.setCenter(sf::Vector2f((levelView.getCenter().x - 20), levelView.getCenter().y));
+	}
 
 		//levelView.setCenter(sf::Vector2f(
 		//	//MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x),
@@ -740,19 +741,19 @@ void Level1::SpreadBrickPlatforms()
 	vector<b2Vec2> locations;
 	locations.push_back( b2Vec2(550 , 768-48-48-48-40) );
 	locations.push_back( b2Vec2(630, 768-48-48-48-48-48-40) );
-	locations.push_back( b2Vec2(560, 768-48-48-48-48-48-48-48-48-15) );
-	locations.push_back( b2Vec2(700 , 768-48-48-48-48-48-48-48-48-48-48-40) );
+	locations.push_back( b2Vec2(560, 768-48-48-48-48-48-48-48-48) );
+	locations.push_back( b2Vec2(700 , 768-48-48-48-48-48-48-48-48-48-48) );
 
 
 
-	locations.push_back( b2Vec2(950, 768-48-48-48-48-48-48-48-48) );
-	locations.push_back( b2Vec2(1145, 768-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1345, 768-48-48-48-48-48-48-48-48-48-25-10) );
+	locations.push_back( b2Vec2(950, 768-48-48-48-48-48-48-48-30) );
+	locations.push_back( b2Vec2(1145, 768-48-48-48-48-48-48-30) );
+	locations.push_back( b2Vec2(1345, 768-48-48-48-48-48-48-48-48-48-10) );
 
 
 
 
-	locations.push_back( b2Vec2(2050, 768-48-48-48-48-48-48-48-25-10) );
+	locations.push_back( b2Vec2(2050, 768-48-48-48-48-48-48-48-15) );
 	locations.push_back( b2Vec2(1835, 768-48-48-48-48-48-48-48-25-48-10) );
 	locations.push_back( b2Vec2(1585, 768-48-48-48-48-48-48-48-25-48-10) );
 
@@ -799,6 +800,9 @@ void Level1::SpreadTrees()
 
 		platforms.push_back( tree );
 	}
+
+
+	
 
 
 }

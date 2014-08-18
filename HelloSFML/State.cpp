@@ -2,7 +2,7 @@
 
 
 State::State(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World)
-	: timeStep(1.0f/60.0f ),
+	: timeStep(1.0f/30.0f ),
 	 _rWindow(window), 
 	 _rSfmlDebugDraw(debugDraw),
 	 _pWorld(World),

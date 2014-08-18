@@ -77,8 +77,8 @@ void menu::LoadContent()
 void menu::HandleInput(Event gameEvent)
 {
 	/*LState = Complete;
-	return;
-	*/
+	return;*/
+	
 	//there is some bug with menu.
 	// it cause ExitMenu() to be called immidiately after showing menu screen
 	Vector2i pos=Mouse::getPosition(_rWindow);
