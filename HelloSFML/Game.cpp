@@ -5,22 +5,21 @@ Game::Game(RenderWindow& window, SFMLDebugDraw& debugDraw)
 	: timeStep( 1.0f / 60.0f ),
 	 _rWindow(window), 
 	 _rSfmlDebugDraw(debugDraw),
-	 WindowView(_rWindow.getDefaultView()),
 	 gameEventListener()
 {
 	stateName=Menu;
 	_pMenu=new menu(_rWindow,_rSfmlDebugDraw,_pWorld);
 	_pcurLevel=NULL;
-	//stateName=Level_1;
-	//_currentState=new Level1(_rWindow,_rSfmlDebugDraw,_pWorld, new Score(_rWindow, _rSfmlDebugDraw, _pWorld));
+	
 }
 
 bool Game::Run()
 {
-	
-	SplashScreen();
+	//
+	//SplashScreen();
 
-	LoadScreen();
+	//LoadScreen();
+	
 
 	Initialize();
 	_currentState=_pMenu;
@@ -50,13 +49,15 @@ bool Game::Run()
 				UnloadContent();
 				break;
 			}
+
+			
 		}
 		
 		HandleInput( e );
 
 		//Time lastUpdateCall = timeElapsed.restart();
 
-		if ( timeElapsed.getElapsedTime().asSeconds() >= timeStep)
+		if ( timeElapsed.getElapsedTime().asMilliseconds() >= timeStep)
 		{
 			Update( e, oldEvent, timeElapsed.restart() );
 		}
@@ -75,10 +76,9 @@ bool Game::Run()
 
 void Game::Initialize() 
 {
-	WindowView.setCenter(sf::Vector2f(450,350));
-	WindowView.zoom((700.f-30)/((float)_rWindow.getSize().y));
 	
-	_rWindow.setView(WindowView);
+	
+	
 	_pWorld = new b2World( b2Vec2(0, 10.f) );
 	_pWorld->SetAllowSleeping( true );
 	_pWorld->SetDebugDraw( &_rSfmlDebugDraw );
@@ -261,7 +261,7 @@ void Game::HandleState(State::LevelState lState)
 		else 
 		{
 			stateName=(GameState)(stateName+1);
-			if(_currentState==_pcurLevel)
+			if(_currentState==(State*)_pcurLevel)
 				_pcurLevel=NULL;
 			_currentState->UnloadContent();
 			
@@ -282,6 +282,12 @@ void Game::HandleState(State::LevelState lState)
 			_currentState=new Level1(_rWindow,_rSfmlDebugDraw,_pWorld,score);
 			_currentState->LoadContent();
 			break;
+
+		case(Level_2) :
+			_currentState = new Level2(_rWindow, _rSfmlDebugDraw, _pWorld, score);
+			_currentState->LoadContent();
+			break;
+
 		case(ScoreBoard):
 			_currentState=score;
 			_currentState->LoadContent();
@@ -297,12 +303,24 @@ void Game::HandleState(State::LevelState lState)
 		if(stateName==GameState::Level_1)
 		{
 			LevelNo=Level_1;
-			_pcurLevel=(Level1 *)_currentState;
+			_pcurLevel=_currentState;
 			stateName=GameState::Menu;
 			_currentState=_pMenu;
 			_pMenu->SetMenuState(0);// Paused Menu
 			_pcurLevel->ResetLevelState();
 			
+		}
+
+
+		if (stateName == GameState::Level_2)
+		{
+			LevelNo = Level_2;
+			_pcurLevel = _currentState;
+			stateName = GameState::Menu;
+			_currentState = _pMenu;
+			_pMenu->SetMenuState(0);// Paused Menu
+			_pcurLevel->ResetLevelState();
+
 		}
 	}
 	else if(lState==State::Playing)

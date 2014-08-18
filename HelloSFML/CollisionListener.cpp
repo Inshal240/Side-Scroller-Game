@@ -26,14 +26,14 @@ void CollisionListener::BeginContact(b2Contact* contact)
 	
 	if (  objectA == EDWARD && objectB == BRICK_PLATFORM )
 	{
-		cout << "edward collides with brick platform";
+		/*cout << "edward collides with brick platform";*/
 		
 
 	}
 
 	if ( objectA == BRICK_PLATFORM && objectB == EDWARD ) 
 	{
-		cout << "edward collides with brick platform";
+		//cout << "edward collides with brick platform";
 		
 	}
 
@@ -43,20 +43,20 @@ void CollisionListener::BeginContact(b2Contact* contact)
 		
 		Player* a = (Player *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->Damage( 20 );
-		cout << "edward collides with spike platform";
+		/*cout << "edward collides with spike platform";*/
 	}
 
 	if ( objectA == SPIKE_BALL && objectB == EDWARD ) 
 	{
 		Player* a = (Player *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->Damage( 20 );
-		cout << "edward collides with spike platform";
+		/*cout << "edward collides with spike platform";*/
 	}
 
 			
 	if (  objectA == EDWARD && objectB == BLADE )
 	{
-		cout << "edward collides with blade";
+		/*cout << "edward collides with blade";*/
 		Player* a = (Player *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->Damage( 20 );
 
@@ -65,7 +65,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 
 	if ( objectA == BLADE && objectB == EDWARD ) 
 	{
-		cout << "edward collides with blade";
+		/*cout << "edward collides with blade";*/
 		Player* a = (Player *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->Damage( 20 );
 
@@ -74,7 +74,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 	}
 	if ( objectA == SPIKE && objectB == EDWARD )
 	{
-		cout << "edward collides with Spike";
+	/*	cout << "edward collides with Spike";*/
 
 		Player* a = (Player *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->Damage( 10 );
@@ -82,8 +82,8 @@ void CollisionListener::BeginContact(b2Contact* contact)
 	}
 	
 	if ( objectB == SPIKE && objectA == EDWARD )
-	{
-		cout << "edward collides with Spike";
+	{/*
+		cout << "edward collides with Spike";*/
 
 		Player* a = (Player *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->Damage( 10 );
@@ -93,7 +93,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 
 	if ( objectA ==	COIN && objectB == EDWARD )
 	{
-		cout << "coin collected\n";
+		/*cout << "coin collected\n";*/
 
 		Coin *a = (Coin *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->isCollected=true;
@@ -105,7 +105,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 	if ( objectB == COIN && objectA == EDWARD )
 	{
 		
-		cout << "coin collected\n";
+		/*cout << "coin collected\n";*/
 		Coin *a = (Coin *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->isCollected=true;
 		
@@ -115,7 +115,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 
 	if ( objectA ==	BLADE && objectB == EDWARD )
 	{
-		cout << "coin collected\n";
+		/*cout << "coin collected\n";*/
 
 		Player *a = (Player *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->Damage(20);
@@ -124,8 +124,8 @@ void CollisionListener::BeginContact(b2Contact* contact)
 	
 	if ( objectB == BLADE && objectA == EDWARD )
 	{
-		
-		cout << "coin collected\n";
+		/*
+		cout << "coin collected\n";*/
 		Player *a = (Player *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->Damage(20);
 		
@@ -134,8 +134,8 @@ void CollisionListener::BeginContact(b2Contact* contact)
 
 
 	if (objectA == EDWARD && objectB == KNIFE)
-	{
-		cout << "edward collides with knife";
+	{/*
+		cout << "edward collides with knife";*/
 		Player* a = (Player *)contact->GetFixtureA()->GetBody()->GetUserData();
 		a->Damage(20);
 
@@ -146,7 +146,7 @@ void CollisionListener::BeginContact(b2Contact* contact)
 
 	if (objectA == KNIFE && objectB == EDWARD)
 	{
-		cout << "edward collides with kknife";
+	/*	cout << "edward collides with kknife";*/
 		Player* a = (Player *)contact->GetFixtureB()->GetBody()->GetUserData();
 		a->Damage(20);
 

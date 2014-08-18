@@ -9,7 +9,7 @@ int main()
 {
 	
 	
-	RenderWindow gameWindow(VideoMode(900,700), "SFML + Box2D");//,sf::Style::Fullscreen);
+	RenderWindow gameWindow(VideoMode(1024,768), "The Adventure of Edward",sf::Style::Fullscreen);
 
 	SFMLDebugDraw debugDrawInstance(gameWindow);
 

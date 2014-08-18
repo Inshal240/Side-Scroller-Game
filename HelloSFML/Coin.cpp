@@ -39,7 +39,7 @@ void Coin::Create(sf::Texture& coinTexture, float x, float y)
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 1.f;
 	_fixtureDef.friction = 0.5f;
-	_fixtureDef.restitution = 0.5f;
+	_fixtureDef.restitution = 0.0f;
 
 }
 

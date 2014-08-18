@@ -3,13 +3,13 @@
 
 Level1::Level1(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World,Score* score)
 	:State(window,debugDraw,World),
-	 levelView(window.getView()),
+	 levelView(window.getDefaultView()),
 	 hudView(),
 	 score(score),
 	 EdwardWasAlive(true)
 {
 
-	hudView.reset(FloatRect(0,0,900,700));
+	hudView.reset(FloatRect(0,0,1024,768));
 	hudView.setViewport(FloatRect(0,0,1,1)); // target rect - in ratio
 
 	cameraCenter = levelView.getCenter().x;	  //_rWindow = window;
@@ -146,19 +146,19 @@ void Level1::LoadContent()
 
 
 	
-	StaticPlatform grassCover1( textureBank["grassGround"], 125, 700-48-48, 450.0f, 0);
+	StaticPlatform grassCover1( textureBank["grassGround"], 125, 768-48-48, 450.0f, 0);
 	grassCover1.SetWorld( *_pWorld );
 	platforms.push_back( grassCover1 );
 
-	StaticPlatform grassCover2( textureBank["grassGround"], 600, 700-48-48, 350.0f, 0);
+	StaticPlatform grassCover2(textureBank["grassGround"], 600, 768 - 48 - 48, 350.0f, 0);
 	grassCover2.SetWorld( *_pWorld );
 	platforms.push_back( grassCover2 );
 
-	StaticPlatform grassCover3( textureBank["grassGround"], 1100, 700-48-48);
+	StaticPlatform grassCover3(textureBank["grassGround"], 1100, 768 - 48 - 48);
 	grassCover3.SetWorld( *_pWorld );
 	platforms.push_back( grassCover3 );
 
-	StaticPlatform grassCover4( textureBank["grassGround"], 1900, 700-48-48);
+	StaticPlatform grassCover4(textureBank["grassGround"], 1900, 768 - 48 - 48);
 	grassCover4.SetWorld( *_pWorld );
 	platforms.push_back( grassCover4 );
 
@@ -166,20 +166,20 @@ void Level1::LoadContent()
 
 	//load ground
 
-	StaticPlatform ground1( textureBank["brownGround"], 125, 700-48, 450.0f, 0); //width 250
+	StaticPlatform ground1(textureBank["brownGround"], 125, 768 - 48, 450.0f, 0); //width 250
 	ground1.SetWorld( *_pWorld );
 	platforms.push_back( ground1 );
 
-	StaticPlatform ground3( textureBank["brownGround"], 600, 700-48, 350.0f, 0);
+	StaticPlatform ground3(textureBank["brownGround"], 600, 768 - 48, 350.0f, 0);
 	ground3.SetWorld( *_pWorld );
 	platforms.push_back( ground3 );
 
 	//continued ground
-	StaticPlatform ground2( textureBank["brownGround"], 1100, 700-48);
+	StaticPlatform ground2(textureBank["brownGround"], 1100, 768 - 48);
 	ground2.SetWorld( *_pWorld );
 	platforms.push_back( ground2 );
 
-	StaticPlatform ground4( textureBank["brownGround"], 1900, 700-48);
+	StaticPlatform ground4(textureBank["brownGround"], 1900, 768 - 48);
 	ground4.SetWorld( *_pWorld );
 	platforms.push_back( ground4);
 
@@ -190,7 +190,7 @@ void Level1::LoadContent()
 	//load the (cruel) spikey ball
 
 
-	SwingSpikeBall spikeChain(textureBank["chainLink"], textureBank["spikeyBall"], 400, 160, 0);
+	SwingSpikeBall spikeChain(textureBank["chainLink"], textureBank["spikeyBall"], 400, 230, 0);
 	spikeChain.IamA( SPIKE_BALL )->ICollideWith( EDWARD );
 	spikeChain.SetWorld( *_pWorld );
 	spikeChains.push_back(spikeChain);
@@ -202,7 +202,7 @@ void Level1::LoadContent()
 
 
 	//Load first timed spike pair 
-	TimedSpikes timed( textureBank["twospikesup"], 1650, 700 , (int)2);
+	TimedSpikes timed( textureBank["twospikesup"], 1650, 768 , (int)2);
 	timed.IamA( SPIKE )->ICollideWith( EDWARD );
 	timed.SetWorld(*_pWorld);
 	timed.SetDirection(0); //up
@@ -219,7 +219,7 @@ void Level1::LoadContent()
 
 	//Load second timed spike pair
 
-	TimedSpikes timed2( textureBank["twospikesup"], 1950, 700 , (int)2);
+	TimedSpikes timed2( textureBank["twospikesup"], 1950, 768 , (int)2);
 	timed2.IamA( SPIKE )->ICollideWith( EDWARD );
 	timed2.SetWorld(*_pWorld);
 	timed2.SetDirection(0); //up
@@ -235,55 +235,55 @@ void Level1::LoadContent()
 	
 	//start first gray ladder
 	//origin of next level = origin of lower level + 24 (only x coord)
-	StaticPlatform platform( textureBank["grayStone"], 200, 700-48-48-48, (int)4);
+	StaticPlatform platform(textureBank["grayStone"], 200, 768 - 48 - 48 - 48, (int)4);
 	platform.SetWorld( *_pWorld );
 	platforms.push_back( platform );
 
-	StaticPlatform l2( textureBank["grayStone"], 200+24, 700-48-48-48-48, (int)3);
+	StaticPlatform l2(textureBank["grayStone"], 200 + 24, 768 - 48 - 48 - 48 - 48, (int)3);
 	l2.SetWorld( *_pWorld );
 	platforms.push_back( l2 );
 
-	StaticPlatform l3( textureBank["grayStone"], 200+24+24, 700-48-48-48-48-48, (int)2);
+	StaticPlatform l3(textureBank["grayStone"], 200 + 24 + 24, 768 - 48 - 48 - 48 - 48 - 48, (int)2);
 	l3.SetWorld( *_pWorld );
 	platforms.push_back( l3 );
 
 	//end gray ladder
 
 
-	StaticPlatform spike1( textureBank["woodSpikes"], 1000, 700-48-48-40);
+	StaticPlatform spike1( textureBank["woodSpikes"], 1000, 768-48-48-40);
 	spike1.IamA(SPIKE)->ICollideWith(EDWARD|ROBOT);
 	spike1.SetWorld( *_pWorld );
 	platforms.push_back( spike1 );
 
-	StaticPlatform spike2( textureBank["twospikesup"], 390, 700-25);//Under ground spikes
+	StaticPlatform spike2( textureBank["twospikesup"], 390, 768-25);//Under ground spikes
 	spike2.IamA(SPIKE)->ICollideWith(EDWARD);
 	spike2.SetWorld( *_pWorld );
 	platforms.push_back( spike2 );
 
-	StaticPlatform spike3( textureBank["woodSpikes"], 630, 700-48-48-40);
+	StaticPlatform spike3( textureBank["woodSpikes"], 630, 768-48-48-40);
 	spike3.IamA(SPIKE)->ICollideWith(EDWARD);
 	spike3.SetWorld( *_pWorld );
 	platforms.push_back( spike3 );
 
-	JointPlatform b1( textureBank["blade2"], 500, 150 , true );
+	JointPlatform b1( textureBank["blade2"], 500, 220, true );
 	b1.IamA(BLADE)->ICollideWith(EDWARD);
 	b1.SetWorld(*_pWorld);
 	jointPlatforms.push_back( b1 );
 
 	
-	JointPlatform b2( textureBank["blade2"], 1160, 150 , true );
+	JointPlatform b2( textureBank["blade2"], 1160, 220 , true );
 	b2.IamA(BLADE)->ICollideWith(EDWARD);
 	b2.SetWorld(*_pWorld);
 	jointPlatforms.push_back( b2 );
 
 
-	JointPlatform b3( textureBank["blade2"], 1410, 125 , true );
+	JointPlatform b3( textureBank["blade2"], 1410, 190 , true );
 	b3.IamA(BLADE)->ICollideWith(EDWARD);
 	b3.SetWorld(*_pWorld);
 	jointPlatforms.push_back( b3 );
 
 
-	JointPlatform b4( textureBank["blade2"], 1720,310 , true );
+	JointPlatform b4( textureBank["blade2"], 1720,380 , true );
 	b4.IamA(BLADE)->ICollideWith(EDWARD);
 	b4.SetWorld(*_pWorld);
 	jointPlatforms.push_back( b4 );
@@ -294,15 +294,15 @@ void Level1::LoadContent()
 
 	//start second gray ladder
 	//origin of next level = origin of lower level + 24 (only x coord)
-	StaticPlatform ladder1( textureBank["grayStone"], 1075 + 250, 700-48-48-48, (int)5);
+	StaticPlatform ladder1( textureBank["grayStone"], 1075 + 250, 768-48-48-48, (int)5);
 	ladder1.SetWorld( *_pWorld );
 	platforms.push_back( ladder1 );
 
-	StaticPlatform ladder2( textureBank["grayStone"], 1075 + 250, 700-48-48-48-48, (int)3);
+	StaticPlatform ladder2( textureBank["grayStone"], 1075 + 250, 768-48-48-48-48, (int)3);
 	ladder2.SetWorld( *_pWorld );
 	platforms.push_back( ladder2 );
 
-	StaticPlatform ladder3( textureBank["grayStone"], 1075 + 250, 700-48-48-48-48-48, (int)1,0.35f);
+	StaticPlatform ladder3( textureBank["grayStone"], 1075 + 250, 768-48-48-48-48-48, (int)1);
 	ladder3.SetWorld( *_pWorld );
 	platforms.push_back( ladder3 );
 
@@ -312,15 +312,15 @@ void Level1::LoadContent()
 
 	//start Final gray ladder
 	
-	StaticPlatform ladder4( textureBank["grayStone"], 2300-24-24-24-24-24, 700-48-48-48, (int)3);
+	StaticPlatform ladder4( textureBank["grayStone"], 2300-24-24-24-24-24, 768-48-48-48, (int)3);
 	ladder4.SetWorld( *_pWorld );
 	platforms.push_back( ladder4 );
 
-	StaticPlatform ladder5( textureBank["grayStone"], 2300 -24-24-24-24, 700-48-48-48-48, (int)2);
+	StaticPlatform ladder5( textureBank["grayStone"], 2300 -24-24-24-24, 768-48-48-48-48, (int)2);
 	ladder5.SetWorld( *_pWorld );
 	platforms.push_back( ladder5 );
 
-	StaticPlatform ladder6( textureBank["grayStone"], 2300 -24-24-24 , 700-48-48-48-48-48, (int)1,0.4f);
+	StaticPlatform ladder6( textureBank["grayStone"], 2300 -24-24-24 , 768-48-48-48-48-48, (int)1);
 	ladder6.SetWorld( *_pWorld );
 	platforms.push_back( ladder6 );
 
@@ -442,6 +442,15 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 
 
 
+	//if (Keyboard::isKeyPressed(Keyboard::Period))
+	//{
+	//	levelView.setCenter(sf::Vector2f((levelView.getCenter().x + 20), levelView.getCenter().y));
+	//}
+	//if (Keyboard::isKeyPressed(Keyboard::Comma))
+	//{
+	//	levelView.setCenter(sf::Vector2f((levelView.getCenter().x - 20), levelView.getCenter().y));
+	//}
+
 		//levelView.setCenter(sf::Vector2f(
 		//	//MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x),
 		//	cameraCenter,
@@ -556,6 +565,16 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 			LState=Complete;
 		GameEndTimer.restart();
 	}
+
+	if (Keyboard::isKeyPressed(Keyboard::F5))
+	{
+		LState = Complete;
+	}
+
+
+
+
+
 
 
 	for ( int i = 0; i < coins.size(); ++i)
@@ -684,22 +703,22 @@ void Level1::SpreadPickupCoins()
 {
 	vector<b2Vec2> locations;
 
-	locations.push_back( b2Vec2(510, 700-48-48-48-48-50) );
-	locations.push_back( b2Vec2(670, 700-48-48-48-48-48-48-50) );
-	locations.push_back( b2Vec2(515, 700-48-48-48-48-48-48-48-48-50-15) );
-	locations.push_back( b2Vec2(645, 700-48-48-48-48-48-48-48-48-48-48-50-40) );
-	locations.push_back( b2Vec2(910, 700-48-48-48-48-48-48-48-48-50) );
-	locations.push_back( b2Vec2(990, 700-48-48-48-48-48-48-48-48-50) );
-	locations.push_back( b2Vec2(1105, 700-48-48-48-48-48-48-48-50-10) );
-	locations.push_back( b2Vec2(1195, 700-48-48-48-48-48-48-48-50-10) );
-	locations.push_back( b2Vec2(1100, 700-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1170, 700-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1350, 700-48-48-48-48-48-48-48-48-48-48-48-78-10) );
-	locations.push_back( b2Vec2(1630, 700-48-48-48-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1810, 700-48-48-48-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1880, 700-48-48-48-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(2000, 700-48-48-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(2080, 700-48-48-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(510, 768-48-48-48-48-50) );
+	locations.push_back( b2Vec2(670, 768-48-48-48-48-48-48-50) );
+	locations.push_back( b2Vec2(515, 768-48-48-48-48-48-48-48-48-50-15) );
+	locations.push_back( b2Vec2(645, 768-48-48-48-48-48-48-48-48-48-48-50-40) );
+	locations.push_back( b2Vec2(910, 768-48-48-48-48-48-48-48-48-50) );
+	locations.push_back( b2Vec2(990, 768-48-48-48-48-48-48-48-48-50) );
+	locations.push_back( b2Vec2(1105, 768-48-48-48-48-48-48-48-50-10) );
+	locations.push_back( b2Vec2(1195, 768-48-48-48-48-48-48-48-50-10) );
+	locations.push_back( b2Vec2(1100, 768-48-48-48-48-10) );
+	locations.push_back( b2Vec2(1170, 768-48-48-48-48-10) );
+	locations.push_back( b2Vec2(1350, 768-48-48-48-48-48-48-48-48-48-48-48-78-10) );
+	locations.push_back( b2Vec2(1630, 768-48-48-48-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(1810, 768-48-48-48-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(1880, 768-48-48-48-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(2000, 768-48-48-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(2080, 768-48-48-48-48-48-48-48-48-48-10) );
 	//locations.push_back( b2Vec2(810, 190) );
 	//locations.push_back( b2Vec2(170, 280) );
 
@@ -719,26 +738,26 @@ void Level1::SpreadPickupCoins()
 void Level1::SpreadBrickPlatforms()
 {
 	vector<b2Vec2> locations;
-	locations.push_back( b2Vec2(550 , 700-48-48-48-40) );
-	locations.push_back( b2Vec2(630, 700-48-48-48-48-48-40) );
-	locations.push_back( b2Vec2(560, 700-48-48-48-48-48-48-48-48-15) );
-	locations.push_back( b2Vec2(700 , 700-48-48-48-48-48-48-48-48-48-48-40) );
+	locations.push_back( b2Vec2(550 , 768-48-48-48-40) );
+	locations.push_back( b2Vec2(630, 768-48-48-48-48-48-40) );
+	locations.push_back( b2Vec2(560, 768-48-48-48-48-48-48-48-48-15) );
+	locations.push_back( b2Vec2(700 , 768-48-48-48-48-48-48-48-48-48-48-40) );
 
 
 
-	locations.push_back( b2Vec2(950, 700-48-48-48-48-48-48-48-48) );
-	locations.push_back( b2Vec2(1145, 700-48-48-48-48-48-48-48-10) );
-	locations.push_back( b2Vec2(1345, 700-48-48-48-48-48-48-48-48-48-25-10) );
+	locations.push_back( b2Vec2(950, 768-48-48-48-48-48-48-48-48) );
+	locations.push_back( b2Vec2(1145, 768-48-48-48-48-48-48-48-10) );
+	locations.push_back( b2Vec2(1345, 768-48-48-48-48-48-48-48-48-48-25-10) );
 
 
 
 
-	locations.push_back( b2Vec2(2050, 700-48-48-48-48-48-48-48-25-10) );
-	locations.push_back( b2Vec2(1835, 700-48-48-48-48-48-48-48-25-48-10) );
-	locations.push_back( b2Vec2(1585, 700-48-48-48-48-48-48-48-25-48-10) );
+	locations.push_back( b2Vec2(2050, 768-48-48-48-48-48-48-48-25-10) );
+	locations.push_back( b2Vec2(1835, 768-48-48-48-48-48-48-48-25-48-10) );
+	locations.push_back( b2Vec2(1585, 768-48-48-48-48-48-48-48-25-48-10) );
 
 
-	//locations.push_back( b2Vec2(1075 + 450, 700-48-48-48-48-48-48-48-48) );
+	//locations.push_back( b2Vec2(1075 + 450, 768-48-48-48-48-48-48-48-48) );
 
 	for ( int i = 0; i < locations.size(); ++i)
 	{
@@ -756,18 +775,18 @@ void Level1::SpreadTrees()
 {
 	vector<b2Vec2> locations;
 
-	locations.push_back( b2Vec2(875 , 700-48-48-48) );
-	locations.push_back( b2Vec2(1075 , 700-48-48-48) );
-	locations.push_back( b2Vec2(850, 700-48-48-48) );
-	locations.push_back( b2Vec2(650+150, 700-48-48-48) );
-	locations.push_back( b2Vec2(600+150+120, 700-48-48-48) );
-	locations.push_back( b2Vec2(1300, 700-48-48-48) );
-	locations.push_back( b2Vec2(1300, 700-48-48-48) );
-	locations.push_back( b2Vec2(1400, 700-48-48-48) );
-	locations.push_back( b2Vec2(1800, 700-48-48-48) );
-	locations.push_back( b2Vec2(2000, 700-48-48-48) );
-	locations.push_back( b2Vec2(100, 700-48-48-48) );
-	locations.push_back( b2Vec2(1350, 700-48-48-48) );
+	locations.push_back( b2Vec2(875 , 768-48-48-48) );
+	locations.push_back( b2Vec2(1075 , 768-48-48-48) );
+	locations.push_back( b2Vec2(850, 768-48-48-48) );
+	locations.push_back( b2Vec2(650+150, 768-48-48-48) );
+	locations.push_back( b2Vec2(600+150+120, 768-48-48-48) );
+	locations.push_back( b2Vec2(1300, 768-48-48-48) );
+	locations.push_back( b2Vec2(1300, 768-48-48-48) );
+	locations.push_back( b2Vec2(1400, 768-48-48-48) );
+	locations.push_back( b2Vec2(1800, 768-48-48-48) );
+	locations.push_back( b2Vec2(2000, 768-48-48-48) );
+	locations.push_back( b2Vec2(100, 768-48-48-48) );
+	locations.push_back( b2Vec2(1350, 768-48-48-48) );
 	//locations.push_back( b2Vec2(805, 70) );
 	//locations.push_back( b2Vec2(805, 70) );
 
@@ -782,6 +801,11 @@ void Level1::SpreadTrees()
 	}
 
 
+}
+
+
+void Level1::UnloadLevel(){
+	UnloadContent();
 }
 
 

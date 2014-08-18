@@ -27,20 +27,20 @@
 #include "Kirby.h"
 
 
-class Level1 :
+class Level2 :
 	public State
 {
-	
+
 private:
-	
+
 	Text HudViewCoins;
 	Text HudViewHealth;
 	Text HudViewLives;
 	sf::RectangleShape HudRect;
-	
+
 	map<std::string, sf::Texture> textureBank;
 
-	
+
 	vector<Box> boxes;
 	vector<StaticPlatform> platforms;
 	vector<Bomb> bombs;
@@ -49,7 +49,7 @@ private:
 	vector<Wheel> wheels;
 	vector<SwingSpikeBall> spikeChains;
 	vector<TimedSpikes> timedSpikes;
-	
+
 	vector<Coin*> coins; //for some (yet unknown) reasons it is not working with object, so I am using pointer-to-object
 
 	Player Edward;
@@ -80,17 +80,17 @@ private:
 
 public:
 
-	Level1(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World,Score* score);
+	Level2(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World, Score* score);
 	void LoadContent();
-	
+
 	void HandleInput(Event gameEvent);
 
 	void UnloadContent();
-	 
+
 	State::LevelState Update(Event gameEvent, Event prevEvent, Time timeSinceLastUpdateCall);
 
 
-	 
+
 	void Draw(RenderWindow& window, Time timeSinceLastDrawCall);
 
 	void ResetLevelState();
@@ -101,15 +101,16 @@ public:
 
 	void SpreadTrees();
 
+	Level2(void);
+	~Level2(void);
+
 	void UnloadLevel();
 
-	Level1(void);
-	~Level1(void);
-	
-private :
+private:
 
 	void DrawMousePosition();
 
 
 };
+
 

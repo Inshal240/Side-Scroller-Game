@@ -5,9 +5,11 @@
 using namespace sf;
 class State
 {
-
+	
 
 public: 
+	
+
 	enum LevelState{
 		Playing,
 		Complete,
@@ -39,7 +41,7 @@ public:
 	virtual void Draw(RenderWindow& window, Time timeSinceLastDrawCall)=0;
 
 	State(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World);
-
+	virtual void ResetLevelState(){}
 	State(void);
 	~State(void);
 };

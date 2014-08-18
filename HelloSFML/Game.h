@@ -21,6 +21,7 @@
 #include "Ranger.h"
 #include "State.h"
 #include "Level1.h"
+#include "Level2.h"
 #include "Score.h"
 #include "CollisionListener.h"
 #include "menu.h"
@@ -38,7 +39,7 @@ class Game
 		Credits,*/
 		Menu,
 		Level_1,
-		/*Level_2,*/
+		Level_2,
 		ScoreBoard,
 		Exit
 	};
@@ -68,13 +69,13 @@ public:
 	
 	State* _currentState;
 
-	View WindowView;
+	
 
 	Score *score;
 
 	menu *_pMenu;
 
-	Level1* _pcurLevel;
+	State* _pcurLevel;
 
 	GameState LevelNo;
 	

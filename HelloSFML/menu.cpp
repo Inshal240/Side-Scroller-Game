@@ -10,14 +10,17 @@ menu::~menu(void)
 menu::menu(RenderWindow& window, SFMLDebugDraw& debugDraw, b2World* World)
 	:State(window,debugDraw,World)
 {
+	
 	MenuIs=NewMenu;
 	MenuWas=NewMenu;
 	LState=Paused;
+	
 }
 
 
 void menu::LoadContent()
 {
+	
 	BackgroundTexture.loadFromFile("Art\\MenuBackground.png");
 
 	ButtonTexture[0].loadFromFile("Art\\NEWGAME.png");
@@ -32,6 +35,7 @@ void menu::LoadContent()
 
 
 	Background.setTexture(BackgroundTexture);
+	
 	Background.setPosition(0,0);
 	Background.setOrigin(0,0);
 
@@ -88,28 +92,28 @@ void menu::HandleInput(Event gameEvent)
 		{
 			
 			cout<<pos.x<<","<<pos.y<<endl;
-			if((pos.x>600) && (pos.x < 835) && (pos.y > 180) && (pos.y <235) )
+			if ((pos.x>655) && (pos.x < 930) && (pos.y > 200) && (pos.y <260))
 			{
 				
 
 				LState=Complete;
 				//Button[0].setColor(sf::Color(Button[0].getColor().r,Button[0].getColor().g,Button[0].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 280) && (pos.y <330) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 300) && (pos.y <360))
 			{
 				//Button[1].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 360) && (pos.y <425) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 400) && (pos.y <465))
 			{
 				MenuIs=Control;
 				//Button[2].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 460) && (pos.y <520) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 500) && (pos.y <575))
 			{
 				MenuIs=Credit;
 				//Button[3].setColor(sf::Color(Button[3].getColor().r,Button[3].getColor().g,Button[0].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 560) && (pos.y <610) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 610) && (pos.y <670))
 			{
 				LState=Lost;
 				//Button[4].setColor(sf::Color(Button[4].getColor().r,Button[4].getColor().g,Button[4].getColor().b,200));
@@ -121,7 +125,7 @@ void menu::HandleInput(Event gameEvent)
 
 		if(gameEvent.type=Event::MouseButtonReleased)
 		{
-			if((pos.x>600) && (pos.x < 835) && (pos.y > 180) && (pos.y <235) )
+			if((pos.x>655) && (pos.x < 930) && (pos.y > 200) && (pos.y <260) )
 			{
 				for(int i=0;i<5;i++)
 				{
@@ -130,7 +134,7 @@ void menu::HandleInput(Event gameEvent)
 				
 				Button[0].setColor(sf::Color(Button[0].getColor().r,Button[0].getColor().g,Button[0].getColor().b,180));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 280) && (pos.y <330) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 300) && (pos.y <360))
 			{
 				for(int i=0;i<5;i++)
 				{
@@ -139,16 +143,16 @@ void menu::HandleInput(Event gameEvent)
 
 				Button[1].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,255));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 360) && (pos.y <425) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 400) && (pos.y <465))
 			{
 				for(int i=0;i<5;i++)
 				{
 					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
 				}
 				
-				Button[2].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,180));
+				Button[2].setColor(sf::Color(Button[2].getColor().r,Button[1].getColor().g,Button[1].getColor().b,180));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 460) && (pos.y <520) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 500) && (pos.y <575))
 			{
 				for(int i=0;i<5;i++)
 				{
@@ -157,7 +161,7 @@ void menu::HandleInput(Event gameEvent)
 
 				Button[3].setColor(sf::Color(Button[3].getColor().r,Button[3].getColor().g,Button[0].getColor().b,180));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 560) && (pos.y <610) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 610) && (pos.y <670))
 			{
 				
 				for(int i=0;i<5;i++)
@@ -179,99 +183,98 @@ void menu::HandleInput(Event gameEvent)
 	case PausedMenu:
 
 
-		if(gameEvent.type==Event::MouseButtonPressed)
-		{
-			
-			cout<<pos.x<<","<<pos.y<<endl;
-			if((pos.x>600) && (pos.x < 835) && (pos.y > 200) && (pos.y <235) )
-			{
-				
 
-				LState=Complete;
+		if (gameEvent.type == Event::MouseButtonPressed)
+		{
+
+			cout << pos.x << "," << pos.y << endl;
+			if ((pos.x>655) && (pos.x < 930) && (pos.y > 200) && (pos.y <260))
+			{
+
+
+				LState = Complete;
 				//Button[0].setColor(sf::Color(Button[0].getColor().r,Button[0].getColor().g,Button[0].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 280) && (pos.y <330) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 300) && (pos.y <360))
 			{
-				LState=Playing;
+				LState = Playing;
 				//Button[1].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 360) && (pos.y <425) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 400) && (pos.y <465))
 			{
-				MenuIs=Control;
+				MenuIs = Control;
 				//Button[2].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 460) && (pos.y <520) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 500) && (pos.y <575))
 			{
-				MenuIs=Credit;
+				MenuIs = Credit;
 				//Button[3].setColor(sf::Color(Button[3].getColor().r,Button[3].getColor().g,Button[0].getColor().b,200));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 560) && (pos.y <610) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 610) && (pos.y <670))
 			{
-				LState=Lost;
+				LState = Lost;
 				//Button[4].setColor(sf::Color(Button[4].getColor().r,Button[4].getColor().g,Button[4].getColor().b,200));
 			}
-			
-		
+
+
 		}
 
 
-		if(gameEvent.type=Event::MouseButtonReleased)
+		if (gameEvent.type = Event::MouseButtonReleased)
 		{
-			if((pos.x>600) && (pos.x < 835) && (pos.y > 200) && (pos.y <235) )
+			if ((pos.x>655) && (pos.x < 930) && (pos.y > 200) && (pos.y <260))
 			{
-				for(int i=0;i<5;i++)
+				for (int i = 0; i<5; i++)
 				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
-				}
-				
-				Button[0].setColor(sf::Color(Button[0].getColor().r,Button[0].getColor().g,Button[0].getColor().b,180));
-			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 280) && (pos.y <330) )
-			{
-				for(int i=0;i<5;i++)
-				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
+					Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
 				}
 
-				Button[1].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,180));
+				Button[0].setColor(sf::Color(Button[0].getColor().r, Button[0].getColor().g, Button[0].getColor().b, 180));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 360) && (pos.y <425) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 300) && (pos.y <360))
 			{
-				for(int i=0;i<5;i++)
+				for (int i = 0; i<5; i++)
 				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
-				}
-				
-				Button[2].setColor(sf::Color(Button[1].getColor().r,Button[1].getColor().g,Button[1].getColor().b,180));
-			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 460) && (pos.y <520) )
-			{
-				for(int i=0;i<5;i++)
-				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
+					Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
 				}
 
-				Button[3].setColor(sf::Color(Button[3].getColor().r,Button[3].getColor().g,Button[0].getColor().b,180));
+				Button[1].setColor(sf::Color(Button[1].getColor().r, Button[1].getColor().g, Button[1].getColor().b, 180));
 			}
-			else if((pos.x>600) && (pos.x < 835) && (pos.y > 560) && (pos.y <610) )
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 400) && (pos.y <465))
 			{
-				
-				for(int i=0;i<5;i++)
+				for (int i = 0; i<5; i++)
 				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
+					Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
 				}
-				Button[4].setColor(sf::Color(Button[4].getColor().r,Button[4].getColor().g,Button[4].getColor().b,180));
+
+				Button[2].setColor(sf::Color(Button[2].getColor().r, Button[1].getColor().g, Button[1].getColor().b, 180));
+			}
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 500) && (pos.y <575))
+			{
+				for (int i = 0; i<5; i++)
+				{
+					Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
+				}
+
+				Button[3].setColor(sf::Color(Button[3].getColor().r, Button[3].getColor().g, Button[0].getColor().b, 180));
+			}
+			else if ((pos.x>655) && (pos.x < 930) && (pos.y > 610) && (pos.y <670))
+			{
+
+				for (int i = 0; i<5; i++)
+				{
+					Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
+				}
+				Button[4].setColor(sf::Color(Button[4].getColor().r, Button[4].getColor().g, Button[4].getColor().b, 180));
 			}
 			else
-				for(int i=0;i<5;i++)
+				for (int i = 0; i<5; i++)
 				{
-					Button[i].setColor(sf::Color(Button[i].getColor().r,Button[i].getColor().g,Button[i].getColor().b,255));
+				Button[i].setColor(sf::Color(Button[i].getColor().r, Button[i].getColor().g, Button[i].getColor().b, 255));
 				}
-			 
-				
+
+
 		}
-
-
 
 
 	case Credit:
@@ -315,6 +318,8 @@ State::LevelState menu::Update(Event gameEvent, Event prevEvent, Time timeSinceL
 
 void menu::Draw(RenderWindow& window, Time timeSinceLastDrawCall)
 {
+	
+	window.setView(window.getDefaultView());
 	window.clear();
 	switch(MenuIs)
 	{

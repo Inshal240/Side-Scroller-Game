@@ -24,7 +24,7 @@ public:
 
    StaticPlatform(sf::Texture& texture, float initX, float initY, float rotation = 0);
 
-   StaticPlatform(sf::Texture& texture, float initX, float initY, int repeatTimes,float restitution=0.3);
+   StaticPlatform(sf::Texture& texture, float initX, float initY, int repeatTimes,float restitution=0.0);
 
    StaticPlatform();
    

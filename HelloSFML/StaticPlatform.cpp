@@ -44,7 +44,7 @@ StaticPlatform::StaticPlatform(sf::Texture& texture, float initX, float initY, f
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 0;//1.f;
 	_fixtureDef.friction = 0.5f;
-	_fixtureDef.restitution = 0.3f;
+	_fixtureDef.restitution = 0.05f;
 
 	
 }
@@ -78,7 +78,7 @@ StaticPlatform::StaticPlatform(sf::Texture& texture, float initX, float initY, i
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 1.f;
 	_fixtureDef.friction = 0.5f;
-	_fixtureDef.restitution = restitution;
+	_fixtureDef.restitution = 0.05f;
 
 }
 
@@ -107,7 +107,7 @@ StaticPlatform::StaticPlatform(sf::Texture& texture, float initX, float initY, f
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 1.f;
 	_fixtureDef.friction = 0.5f;
-	_fixtureDef.restitution = 0.3f;
+	_fixtureDef.restitution = 0.05f;
 
 }
 

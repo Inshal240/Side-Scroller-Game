@@ -48,7 +48,7 @@ void Player::create(Texture& texture, float initX, float initY)
 	_fixtureDef.shape = &_bodyShape;
 	_fixtureDef.density = 1.f;
 	_fixtureDef.friction = 0.5f;
-	_fixtureDef.restitution = 0.3f;
+	_fixtureDef.restitution = 0.0f;
 }
 
 void Player::changeSprite(State _state)
@@ -293,15 +293,15 @@ void Player::handleEvent(Event gameEvent, Event oldGameEvent)
 			{
 				if (Keyboard::isKeyPressed(Keyboard::Right))
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2( 15, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2( 4, -5.5), _pBody->GetWorldCenter());
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Left))
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2(-15, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2(-4, -5.5), _pBody->GetWorldCenter());
 				}
 				else
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2(0, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2(0, -5), _pBody->GetWorldCenter());
 				}
 			}
 			else
@@ -325,15 +325,15 @@ void Player::handleEvent(Event gameEvent, Event oldGameEvent)
 			{
 				if (Keyboard::isKeyPressed(Keyboard::Right))
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2(10, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2(4, -5), _pBody->GetWorldCenter());
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Left))
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2(-10, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2(-4, -5), _pBody->GetWorldCenter());
 				}
 				else
 				{
-					_pBody->ApplyLinearImpulse(b2Vec2(0, 15), _pBody->GetWorldCenter());
+					_pBody->ApplyLinearImpulse(b2Vec2(0, -5), _pBody->GetWorldCenter());
 				}
 			}
 			
@@ -378,11 +378,11 @@ void Player::handleEvent(Event gameEvent, Event oldGameEvent)
 		{
 			if (Keyboard::isKeyPressed(Keyboard::Right))
 			{
-				_pBody->SetLinearVelocity(b2Vec2( 1.5, _pBody->GetLinearVelocity().y));
+				_pBody->SetLinearVelocity(b2Vec2( 2, _pBody->GetLinearVelocity().y));
 			}
 			else if (Keyboard::isKeyPressed(Keyboard::Left))
 			{
-				_pBody->SetLinearVelocity(b2Vec2(-1.5, _pBody->GetLinearVelocity().y));
+				_pBody->SetLinearVelocity(b2Vec2(-2, _pBody->GetLinearVelocity().y));
 			}
 		}
 		else
