@@ -283,10 +283,10 @@ void Game::HandleState(State::LevelState lState)
 			_currentState->LoadContent();
 			break;
 
-		case(Level_2) :
-			_currentState = new Level2(_rWindow, _rSfmlDebugDraw, _pWorld, score);
-			_currentState->LoadContent();
-			break;
+		//case(Level_2) :
+		//	_currentState = new Level2(_rWindow, _rSfmlDebugDraw, _pWorld, score);
+		//	_currentState->LoadContent();
+		//	break;
 
 		case(ScoreBoard):
 			_currentState=score;
@@ -312,16 +312,16 @@ void Game::HandleState(State::LevelState lState)
 		}
 
 
-		if (stateName == GameState::Level_2)
-		{
-			LevelNo = Level_2;
-			_pcurLevel = _currentState;
-			stateName = GameState::Menu;
-			_currentState = _pMenu;
-			_pMenu->SetMenuState(0);// Paused Menu
-			_pcurLevel->ResetLevelState();
+		//if (stateName == GameState::Level_2)
+		//{
+		//	LevelNo = Level_2;
+		//	_pcurLevel = _currentState;
+		//	stateName = GameState::Menu;
+		//	_currentState = _pMenu;
+		//	_pMenu->SetMenuState(0);// Paused Menu
+		//	_pcurLevel->ResetLevelState();
 
-		}
+		//}
 	}
 	else if(lState==State::Playing)
 	{

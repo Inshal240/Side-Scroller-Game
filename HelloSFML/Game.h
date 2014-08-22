@@ -39,7 +39,7 @@ class Game
 		Credits,*/
 		Menu,
 		Level_1,
-		Level_2,
+		/*Level_2,*/
 		ScoreBoard,
 		Exit
 	};

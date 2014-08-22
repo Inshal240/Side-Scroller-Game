@@ -25,6 +25,7 @@
 #include "Man.h"
 #include "Android.h"
 #include "Kirby.h"
+#include "Key.h"
 
 
 class Level1 :
@@ -40,7 +41,7 @@ private:
 	
 	map<std::string, sf::Texture> textureBank;
 
-	
+	vector<Sprite> TaskWindow;
 	vector<Box> boxes;
 	vector<StaticPlatform> platforms;
 	vector<Bomb> bombs;
@@ -51,7 +52,7 @@ private:
 	vector<TimedSpikes> timedSpikes;
 	
 	vector<Coin*> coins; //for some (yet unknown) reasons it is not working with object, so I am using pointer-to-object
-
+	Key key;
 	Player Edward;
 	Ranger enemy;
 	Skeleton skeleton;

@@ -103,6 +103,70 @@ void Level1::LoadContent()
 	Door.loadFromFile("Art\\door.png");
 	textureBank.insert(pair<string, Texture>("door", Door));
 
+	Texture KeyTexture;
+	KeyTexture.loadFromFile("Art\\Key.png");
+	textureBank.insert(pair<string, Texture>("key", KeyTexture));
+
+
+
+	Texture SpriteWin1;
+	SpriteWin1.loadFromFile("Art\\tasks\\ManCaged.png");
+	textureBank.insert(pair<string, Texture>("sw1", SpriteWin1));
+
+	Texture SpriteWin2;
+	SpriteWin2.loadFromFile("Art\\tasks\\Man.png");
+	textureBank.insert(pair<string, Texture>("sw2", SpriteWin2));
+
+	Texture SpriteWin3;
+	SpriteWin3.loadFromFile("Art\\tasks\\AndroidCaged.png");
+	textureBank.insert(pair<string, Texture>("sw3", SpriteWin3));
+
+	Texture SpriteWin4;
+	SpriteWin4.loadFromFile("Art\\tasks\\Android.png");
+	textureBank.insert(pair<string, Texture>("sw4", SpriteWin4));
+
+	Texture SpriteWin5;
+	SpriteWin5.loadFromFile("Art\\tasks\\RobotCaged.png");
+	textureBank.insert(pair<string, Texture>("sw5", SpriteWin5));
+
+	Texture SpriteWin6;
+	SpriteWin6.loadFromFile("Art\\tasks\\Robot.png");
+	textureBank.insert(pair<string, Texture>("sw6", SpriteWin6));
+
+	Sprite task1;
+	task1.setTexture(textureBank["sw1"]);
+	task1.setPosition(80, 10);
+	TaskWindow.push_back(task1);
+
+	Sprite task2;
+	task2.setTexture(textureBank["sw2"]);
+	task2.setPosition(80, 10);
+	TaskWindow.push_back(task2);
+
+	Sprite task3;
+	task3.setTexture(textureBank["sw3"]);
+	task3.setPosition(180, 10);
+	TaskWindow.push_back(task3);
+
+	Sprite task4;
+	task4.setTexture(textureBank["sw4"]);
+	task4.setPosition(180, 10);
+	TaskWindow.push_back(task4);
+
+	Sprite task5;
+	task5.setTexture(textureBank["sw5"]);
+	task5.setPosition(280, 10);
+	TaskWindow.push_back(task5);
+
+	Sprite task6;
+	task6.setTexture(textureBank["sw6"]);
+	task6.setPosition(280, 10);
+	TaskWindow.push_back(task6);
+
+	Sprite task7;
+	task7.setTexture(textureBank["key"]);
+	task7.setPosition(380, 10);
+	TaskWindow.push_back(task7);
 
 	/******************************************************
 	* End loading textures , start initializing game objects
@@ -110,24 +174,24 @@ void Level1::LoadContent()
 
 	HudViewCoins.setFont(Myfont);
 	HudViewCoins.setCharacterSize(20);
-	HudViewCoins.setPosition(580,5);
+	HudViewCoins.setPosition(710,5);
 	HudViewCoins.setColor(sf::Color::White);
 
 	HudViewHealth.setFont(Myfont);
 	HudViewHealth.setCharacterSize(20);
-	HudViewHealth.setPosition(580,35);
+	HudViewHealth.setPosition(710,35);
 	HudViewHealth.setColor(sf::Color::White);
 
 	HudViewLives.setFont(Myfont);
 	HudViewLives.setCharacterSize(20);
-	HudViewLives.setPosition(580,65);
+	HudViewLives.setPosition(710,65);
 	HudViewLives.setColor(sf::Color::White);
 	
 
 
 	HudRect.setFillColor(Color(256,256,256,200));
-	HudRect.setSize(Vector2f(350,100));
-	HudRect.setPosition(555,0);
+	HudRect.setSize(Vector2f(1050,100));
+	HudRect.setPosition(0,0);
 	HudRect.setOrigin(0,0);
 
 	SpreadPickupCoins();
@@ -342,7 +406,9 @@ void Level1::LoadContent()
 
 	//end 2nd gray ladder
 
-
+	key.Create(textureBank["key"], 3230, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 25 - 10);
+	key.IamA(KEY)->ICollideWith(EDWARD);
+	key.SetWorld(*_pWorld);
 
 
 	//start grassy ground
@@ -365,7 +431,7 @@ void Level1::LoadContent()
 	skeleton.LoadContent();
 	skeleton.IamA( SKELETON )->ICollideWith( HARMLESS_OBSTACLES );
 	skeleton.SetWorld(*_pWorld);
-	skeleton.MoveTo(1430,300);
+	skeleton.MoveTo(2930,300);
 
 
 	robot.LoadContent();
@@ -562,8 +628,9 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 	//Level complete condition
 	if(GameEndTimer.getElapsedTime().asSeconds()>2.5)
 	{
-		if( man.IsFree() && android.IsFree() && robot.IsFree() && kirby.IsDestroyed() &&enemy.IsDestroyed() && skeleton.IsDestroyed() )
-			LState=Complete;
+		if (man.IsFree() && android.IsFree() && robot.IsFree() && kirby.IsDestroyed() && enemy.IsDestroyed() && skeleton.IsDestroyed() && key.isCollected)
+			if (MathHelper::ToPixel(Edward.GetPhysicsBody()->GetPosition().x)>3900)
+				LState=Complete;
 		GameEndTimer.restart();
 	}
 
@@ -575,7 +642,10 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 
 
 
-
+	if (key.isCollected == true)
+	{
+		key.Destroy(*_pWorld);
+	}
 
 
 	for ( int i = 0; i < coins.size(); ++i)
@@ -598,7 +668,7 @@ State::LevelState Level1::Update(Event gameEvent, Event previousGameEvent, Time 
 
 void Level1::Draw(RenderWindow& window, Time timeSinceLastDrawCall )
 {
-	_rWindow.clear( Color(255,255,255) );
+	_rWindow.clear( Color(175,225,250) );
 	
 	_rWindow.setView( levelView );
 
@@ -628,8 +698,9 @@ void Level1::Draw(RenderWindow& window, Time timeSinceLastDrawCall )
 
 	for ( int i = 0; i < coins.size(); ++i)
 		coins[i]->Draw( _rWindow, timeSinceLastDrawCall );
-
 	
+
+	key.Draw(_rWindow, timeSinceLastDrawCall);
 
 	
 
@@ -648,7 +719,7 @@ void Level1::Draw(RenderWindow& window, Time timeSinceLastDrawCall )
 	_rWindow.setView( hudView );
 
 
-
+	
 	///draw HUD elements
 		//todo: add code
 	//end
@@ -658,6 +729,24 @@ void Level1::Draw(RenderWindow& window, Time timeSinceLastDrawCall )
 	_rWindow.draw(HudViewLives);
 
 	//_rWindow.draw( mousePosition );
+
+	if (man.IsFree())
+		_rWindow.draw(TaskWindow[1]);
+	else
+		_rWindow.draw(TaskWindow[0]);
+
+	if (android.IsFree())
+		_rWindow.draw(TaskWindow[3]);
+	else
+		_rWindow.draw(TaskWindow[2]);
+
+	if (robot.IsFree())
+		_rWindow.draw(TaskWindow[5]);
+	else
+		_rWindow.draw(TaskWindow[4]);
+
+	if (key.isCollected)
+		_rWindow.draw(TaskWindow[6]);
 
 	_rWindow.display();
 
@@ -720,6 +809,12 @@ void Level1::SpreadPickupCoins()
 	locations.push_back( b2Vec2(1880, 768-48-48-48-48-48-48-48-48-48-48-10) );
 	locations.push_back( b2Vec2(2000, 768-48-48-48-48-48-48-48-48-48-10) );
 	locations.push_back( b2Vec2(2080, 768-48-48-48-48-48-48-48-48-48-10) );
+
+	locations.push_back(b2Vec2(2350, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48-48 + 5));
+	locations.push_back(b2Vec2(2570, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48-48 - 25 - 48 - 10));
+	locations.push_back(b2Vec2(2790, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48-48 - 25 - 48 - 10));
+	locations.push_back(b2Vec2(3010, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48-48 - 25 - 48 - 10));
+	
 	//locations.push_back( b2Vec2(810, 190) );
 	//locations.push_back( b2Vec2(170, 280) );
 
@@ -753,12 +848,17 @@ void Level1::SpreadBrickPlatforms()
 
 
 
-	locations.push_back( b2Vec2(2050, 768-48-48-48-48-48-48-48-15) );
+	locations.push_back( b2Vec2(2050, 768-48-48-48-48-48-48-48+5) );
 	locations.push_back( b2Vec2(1835, 768-48-48-48-48-48-48-48-25-48-10) );
 	locations.push_back( b2Vec2(1585, 768-48-48-48-48-48-48-48-25-48-10) );
 
+	locations.push_back(b2Vec2(2350, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48 + 5));
+	locations.push_back(b2Vec2(2570, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 25 - 48 - 10));
+	locations.push_back(b2Vec2(2790, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 25 - 48 - 10));
+	locations.push_back(b2Vec2(3010, 768 - 48 - 48 - 48 - 48 - 48 - 48 - 48 - 25 - 48 - 10));
+	locations.push_back(b2Vec2(3230, 768 - 48 - 48 - 48 - 48 - 48 -48-48- 48 - 48 - 25 + 48 - 10));
+	
 
-	//locations.push_back( b2Vec2(1075 + 450, 768-48-48-48-48-48-48-48-48) );
 
 	for ( int i = 0; i < locations.size(); ++i)
 	{
@@ -788,6 +888,10 @@ void Level1::SpreadTrees()
 	locations.push_back( b2Vec2(2000, 768-48-48-48) );
 	locations.push_back( b2Vec2(100, 768-48-48-48) );
 	locations.push_back( b2Vec2(1350, 768-48-48-48) );
+	locations.push_back(b2Vec2(2350, 768 - 48 - 48 - 48));
+	locations.push_back(b2Vec2(2550, 768 - 48 - 48 - 48));
+	locations.push_back(b2Vec2(2950, 768 - 48 - 48 - 48));
+	locations.push_back(b2Vec2(1070, 768 - 48 - 48 - 48));
 	//locations.push_back( b2Vec2(805, 70) );
 	//locations.push_back( b2Vec2(805, 70) );
 

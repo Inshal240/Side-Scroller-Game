@@ -94,6 +94,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="JointPlatform.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="Kirby.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="JointPlatform.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />

@@ -111,6 +111,25 @@ void CollisionListener::BeginContact(b2Contact* contact)
 		
 
 	}
+	if (objectA == KEY && objectB == EDWARD)
+	{
+		
+
+		Key *a = (Key *)contact->GetFixtureA()->GetBody()->GetUserData();
+		a->isCollected = true;
+
+
+
+	}
+
+	if (objectB == KEY && objectA == EDWARD)
+	{
+
+		Key *a = (Key *)contact->GetFixtureB()->GetBody()->GetUserData();
+		a->isCollected = true;
+
+
+	}
 
 
 	if ( objectA ==	BLADE && objectB == EDWARD )

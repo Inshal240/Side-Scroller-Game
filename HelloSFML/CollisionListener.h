@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Coin.h"
 #include "Projectile.h"
+#include "Key.h"
 
 using namespace std;
 
